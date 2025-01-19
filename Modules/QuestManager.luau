@@ -153,4 +153,9 @@ return {
 		"Dead Troupe Captain",
 		"Ryu",
 	},
+	["The Unearthly 1 Quest"] = {
+		"Deep Diver",
+		"Fugitive",
+		"Deep one Villager",
+	},
 }
