@@ -2631,15 +2631,15 @@ library.createWindow =
 				for i, v in pairs(list) do
 					local val = DropdownFunctions.AddValue(v)
 
-					if multi_selection and type(multi_selection) == "table" then
+					if multi_selection and type(default) == "table" then
 						if table.find(default, v) then
 							val:Enable()
 						end
-					elseif multi_selection and type(multi_selection) ~= "table" then
+					elseif multi_selection and type(default) ~= "table" then
 						if v == default then
 							val:Enable()
 						end
-					elseif not multi_selection and type(multi_selection) ~= "table" then
+					elseif not multi_selection and type(default) ~= "table" then
 						if v == default then
 							val:Enable()
 						end
@@ -2677,15 +2677,15 @@ library.createWindow =
 						local val = DropdownFunctions.AddValue(v)
 
 						if _default then
-							if multi_selection and type(multi_selection) == "table" then
+							if multi_selection and type(_default) == "table" then
 								if table.find(_default, v) then
 									val:Enable()
 								end
-							elseif multi_selection and type(multi_selection) ~= "table" then
+							elseif multi_selection and type(_default) ~= "table" then
 								if v == _default then
 									val:Enable()
 								end
-							elseif not multi_selection and type(multi_selection) ~= "table" then
+							elseif not multi_selection and type(_default) ~= "table" then
 								if v == _default then
 									val:Enable()
 								end
@@ -4262,16 +4262,15 @@ library.createWindow =
 
 					for i, v in pairs(list) do
 						local val = DropdownFunctions.AddValue(v)
-						if multi_selection and type(multi_selection) == "table" then
+						if multi_selection and type(default) == "table" then
 							if table.find(default, v) then
 								val:Enable()
 							end
-						elseif multi_selection and type(multi_selection) ~= "table" then
-							print(v == default)
+						elseif multi_selection and type(default) ~= "table" then
 							if v == default then
 								val:Enable()
 							end
-						elseif not multi_selection and type(multi_selection) ~= "table" then
+						elseif not multi_selection and type(default) ~= "table" then
 							if v == default then
 								val:Enable()
 							end
@@ -4309,15 +4308,15 @@ library.createWindow =
 							local val = DropdownFunctions.AddValue(v)
 
 							if _default then
-								if multi_selection and type(multi_selection) == "table" then
+								if multi_selection and type(_default) == "table" then
 									if table.find(_default, v) then
 										val:Enable()
 									end
-								elseif multi_selection and type(multi_selection) ~= "table" then
+								elseif multi_selection and type(_default) ~= "table" then
 									if v == _default then
 										val:Enable()
 									end
-								elseif not multi_selection and type(multi_selection) ~= "table" then
+								elseif not multi_selection and type(_default) ~= "table" then
 									if v == _default then
 										val:Enable()
 									end
