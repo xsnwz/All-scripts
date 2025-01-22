@@ -169,4 +169,13 @@ return {
 		"Jungle Ape",
 		"Cyborg Gorilla",
 	},
+	["Forgotten Coliseum Quest"] = {
+		"Deepfire Combatant",
+		"Electro Abyss Warrior",
+		"Inferno Diver",
+	},
+	["Forgotten Coliseum Quest 2"] = {
+		"Tempest Tidebreaker",
+		"Abyssal Swordsman",
+	},
 }
