@@ -158,4 +158,15 @@ return {
 		"Fugitive",
 		"Deep one Villager",
 	},
+	["The Unearthly 2 Quest"] = {
+		"Fishman Guardian",
+		"The deep one",
+		"Fishman King's Guard",
+	},
+	["The Shallow 1 Quest"] = {
+		"Jungle Gorilla",
+		"Wilderness Gorilla",
+		"Jungle Ape",
+		"Cyborg Gorilla",
+	},
 }
