@@ -1,3 +1,4 @@
+
 getgenv().script_key = ""
 getgenv().Theme = {
 	LightBlue = {
@@ -1674,6 +1675,7 @@ library.createWindow =
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					BackgroundTransparency = 1.000,
 					LayoutOrder = -1,
+					AutomaticSize = Enum.AutomaticSize.Y,
 					Position = UDim2.new(0.0285510346, 0, 0.00579710165, 0),
 					Size = UDim2.new(0, 325, 0, 45),
 				})
@@ -1694,6 +1696,7 @@ library.createWindow =
 					Text = Title,
 					TextColor3 = library.theme.TitleColor,
 					TextSize = 28.000,
+					AutomaticSize = Enum.AutomaticSize.Y,
 					TextXAlignment = Enum.TextXAlignment.Left,
 					TextYAlignment = Enum.TextYAlignment.Top,
 				})
@@ -1704,20 +1707,16 @@ library.createWindow =
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					BackgroundTransparency = 1.000,
 					Position = UDim2.new(0.0158730168, 0, 0.0782608688, 0),
-					Size = UDim2FromTable({0.769, 0},{0.541, 0}),
+					Size = UDim2FromTable({0.769, 0},{0, 0}),
 					Font = Enum.Font.FredokaOne,
 					Text = Description or "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"",
 					TextColor3 = library.theme.DescriptionColor,
 					TextSize = 16.000,
 					TextWrapped = true,
+					AutomaticSize = Enum.AutomaticSize.Y,
 					TextXAlignment = Enum.TextXAlignment.Left,
 					TextYAlignment = Enum.TextYAlignment.Top,
 				})
-
-				if _Description.Text then
-					TabHeader.Size = UDim2.new(0, 325, 0, 45 + 25 + _Description.TextBounds.Y)
-					_Description.Size = UDim2FromTable({0.769, 0},{0.541, _Description.TextBounds.Y or 25})
-				end
 
 				TabHeaderFunctions.updateTitle = function(newTitle)
 					_Title.Text = newTitle
@@ -1725,11 +1724,6 @@ library.createWindow =
 
 				TabHeaderFunctions.updateDescription = function(newDesc)
 					_Description.Text = newDesc
-
-					if _Description.Text then
-						TabHeader.Size = UDim2.new(0, 325, 0, 45 + 25 + _Description.TextBounds.Y)
-						_Description.Size = UDim2FromTable({0.769, 0},{0.541, _Description.TextBounds.Y or 25})
-					end
 				end
 
 				return TabHeaderFunctions
@@ -1787,8 +1781,10 @@ library.createWindow =
 
 				local LabelFunctions = {}
 
-				LabelFunctions.Update = function(newText)
-					Title.Text = tostring(newText)
+				LabelFunctions.Update = function(prop)
+					for prop, v in next, prop do
+						Title[prop] = v
+					end
 				end
 
 				return LabelFunctions
@@ -2639,11 +2635,11 @@ library.createWindow =
 						if table.find(default, v) then
 							val:Enable()
 						end
-					elseif multi_selection and not type(multi_selection) == "table" then
+					elseif multi_selection and type(multi_selection) ~= "table" then
 						if v == default then
 							val:Enable()
 						end
-					elseif not multi_selection and not type(multi_selection) == "table" then
+					elseif not multi_selection and type(multi_selection) ~= "table" then
 						if v == default then
 							val:Enable()
 						end
@@ -2685,11 +2681,11 @@ library.createWindow =
 								if table.find(_default, v) then
 									val:Enable()
 								end
-							elseif multi_selection and not type(multi_selection) == "table" then
+							elseif multi_selection and type(multi_selection) ~= "table" then
 								if v == _default then
 									val:Enable()
 								end
-							elseif not multi_selection and not type(multi_selection) == "table" then
+							elseif not multi_selection and type(multi_selection) ~= "table" then
 								if v == _default then
 									val:Enable()
 								end
@@ -3326,6 +3322,7 @@ library.createWindow =
 						BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 						BackgroundTransparency = 1.000,
 						LayoutOrder = -1,
+						AutomaticSize = Enum.AutomaticSize.Y,
 						Position = UDim2.new(0.0285510346, 0, 0.00579710165, 0),
 						Size = UDim2.new(0, 200, 0, 75),
 					})
@@ -3346,6 +3343,7 @@ library.createWindow =
 						Text = Title,
 						TextColor3 = library.theme.TitleColor,
 						TextSize = 28.000,
+						AutomaticSize = Enum.AutomaticSize.Y,
 						TextXAlignment = Enum.TextXAlignment.Left,
 						TextYAlignment = Enum.TextYAlignment.Top,
 					})
@@ -3362,14 +3360,10 @@ library.createWindow =
 						TextColor3 = Color3.fromRGB(170, 178, 198),
 						TextSize = 16.000,
 						TextWrapped = true,
+						AutomaticSize = Enum.AutomaticSize.Y,
 						TextXAlignment = Enum.TextXAlignment.Left,
 						TextYAlignment = Enum.TextYAlignment.Top,
 					})
-
-					if _Description.Text then
-						TabHeader.Size = UDim2.new(0, 200, 0, 45 + 25 + _Description.TextBounds.Y)
-						_Description.Size = UDim2FromTable({0.769, 0},{0.541, _Description.TextBounds.Y or 25})
-					end
 
 					TabHeaderFunctions.updateTitle = function(newTitle)
 						_Title.Text = newTitle
@@ -3377,11 +3371,6 @@ library.createWindow =
 
 					TabHeaderFunctions.updateDescription = function(newDesc)
 						_Description.Text = newDesc
-
-						if _Description.Text then
-							TabHeader.Size = UDim2.new(0, 200, 0, 45 + 25 + _Description.TextBounds.Y)
-							_Description.Size = UDim2FromTable({0.769, 0},{0.541, _Description.TextBounds.Y or 25})
-						end
 					end
 
 					return TabHeaderFunctions
@@ -3439,8 +3428,10 @@ library.createWindow =
 
 					local AdditionalLabelFunctions = {}
 
-					AdditionalLabelFunctions.Update = function(newText)
-						Title.Text = tostring(newText)
+					AdditionalLabelFunctions.Update = function(prop)
+						for prop, v in next, prop do
+							Title[prop] = v
+						end
 					end
 
 					return AdditionalLabelFunctions
@@ -4271,16 +4262,16 @@ library.createWindow =
 
 					for i, v in pairs(list) do
 						local val = DropdownFunctions.AddValue(v)
-
 						if multi_selection and type(multi_selection) == "table" then
 							if table.find(default, v) then
 								val:Enable()
 							end
-						elseif multi_selection and not type(multi_selection) == "table" then
+						elseif multi_selection and type(multi_selection) ~= "table" then
+							print(v == default)
 							if v == default then
 								val:Enable()
 							end
-						elseif not multi_selection and not type(multi_selection) == "table" then
+						elseif not multi_selection and type(multi_selection) ~= "table" then
 							if v == default then
 								val:Enable()
 							end
@@ -4322,11 +4313,11 @@ library.createWindow =
 									if table.find(_default, v) then
 										val:Enable()
 									end
-								elseif multi_selection and not type(multi_selection) == "table" then
+								elseif multi_selection and type(multi_selection) ~= "table" then
 									if v == _default then
 										val:Enable()
 									end
-								elseif not multi_selection and not type(multi_selection) == "table" then
+								elseif not multi_selection and type(multi_selection) ~= "table" then
 									if v == _default then
 										val:Enable()
 									end
@@ -4638,4 +4629,63 @@ library.createWindow =
 		return WindowFunctions
 	end
 
+do 
+	function UpdatePlayerList2()
+		local t = {}
+
+		for i, v in pairs(game.Players:GetPlayers()) do
+			table.insert(t, v)
+		end
+
+		return t
+	end
+
+	local icon = "http://www.roblox.com/asset/?id=13286125855"
+
+	local Window = library.createWindow(true)
+	local CreditTab = Window.createTab("W-azure V2 [Free]", true)
+
+	CreditTab.createTabHeader("W-Azure")
+
+	CreditTab.createToggle("Is Taiwan a County", icon , false, function(a)
+		print(a)
+	end)
+
+	local s = {}
+	for i = 0, 50, 1 do
+		table.insert(s, i)
+	end
+
+	local DD = CreditTab.createDropdown("W-Azure Nigga", icon, true, s, 1, function(a)
+		table.foreach(a,print)
+	end)
+
+	local SS = CreditTab.createSlider("China?", icon, 0, 100, 1, function(a)
+		print("YOU LOVE CHINA, +", a * 5 .. " CREDIT")
+	end)
+
+	local LB = CreditTab.createLabel("W-Azure Lug1a", icon)
+
+	CreditTab.createButton("W-Azure Negar", icon, function()
+		DD.Refresh({1, 2, 3, 4, 5, 6})
+		LB.Update({Text = "GAYSEG"})
+	end)
+
+	local ADT = CreditTab.createAdditionalTab()
+
+	local ADLB = ADT.createLabel("W-Azure UWU", icon)
+
+	ADT.createSlider("UWUZURE", icon, 0, 100, 50, function(a)
+		print(a)
+	end)
+
+	ADT.createToggle("W-Azure W-Azure W-Azure W-Azure", icon, false, function(a)
+		print(a)
+		ADLB.Update({Text = tostring(a)})
+	end)
+
+	ADT.createDropdown("Movement Mode", icon, false, {10, 20, 30, 40}, 10, function(a)
+		print(a)
+	end)
+end
 return library
