@@ -1,4 +1,3 @@
-shared = {}
 shared.BC_1 = true
 shared.BC_2 = nil
 
