@@ -6,11 +6,20 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
 library.CreateWindow = function(name)
-	local blur = Instance.new("BlurEffect")
-	blur.Parent = game:GetService("Lighting")
-	blur.Name = "cock"
-	blur.Size = 50
-	
+	spawn(function()
+		while wait() do
+			local blur_name = "ddos"
+			if not Lighting:FindFirstChild(blur_name) then
+				local blur = Instance.new("BlurEffect")
+				blur.Parent = game:GetService("Lighting")
+				blur.Name = blur_name
+				blur.Size = 50
+			elseif Lighting:FindFirstChild("cock") and Lighting[blur_name].Enabled == false then
+				Lighting[blur_name].Enabled = true
+			end
+		end
+	end)
+
 	local AutoDungeon = Instance.new("ScreenGui")
 	local HopFrame = Instance.new("Frame")
 	local YuukiHub = Instance.new("TextLabel")
@@ -118,7 +127,7 @@ library.CreateWindow = function(name)
 	GrindingLevel.Text = "Time: 00:00:00"
 	GrindingLevel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	GrindingLevel.TextSize = 16.000
-	
+
 	local func = {}
 	func.time = function(text)
 		GrindingLevel.Text = "Time: "..text
