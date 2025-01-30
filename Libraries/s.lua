@@ -8,6 +8,7 @@ local RunService = game:GetService("RunService")
 library.CreateWindow = function(name)
 	local blur = Instance.new("BlurEffect")
 	blur.Parent = game:GetService("Lighting")
+	blur.Name = "cock"
 	blur.Size = 50
 	
 	local AutoDungeon = Instance.new("ScreenGui")
