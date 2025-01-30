@@ -3,23 +3,8 @@ local library = {}
 local RunService = game:GetService("RunService")
 local Lighting = game:GetService("Lighting")
 local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
 
 library.CreateWindow = function(name)
-	spawn(function()
-		while wait() do
-			local blur_name = "ddos"
-			if not Lighting:FindFirstChild(blur_name) then
-				local blur = Instance.new("BlurEffect")
-				blur.Parent = game:GetService("Lighting")
-				blur.Name = blur_name
-				blur.Size = 50
-			elseif Lighting:FindFirstChild("cock") and Lighting[blur_name].Enabled == false then
-				Lighting[blur_name].Enabled = true
-			end
-		end
-	end)
-
 	local AutoDungeon = Instance.new("ScreenGui")
 	local HopFrame = Instance.new("Frame")
 	local YuukiHub = Instance.new("TextLabel")
@@ -37,12 +22,12 @@ library.CreateWindow = function(name)
 	HopFrame.Name = "HopFrame"
 	HopFrame.Parent = AutoDungeon
 	HopFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-	HopFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	HopFrame.BackgroundTransparency = 0.999
+	HopFrame.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+	HopFrame.BackgroundTransparency = 0
 	HopFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	HopFrame.BorderSizePixel = 0
-	HopFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-	HopFrame.Size = UDim2.new(1, 0, 1, 0)
+	HopFrame.Position = UDim2.new(0.5, 0, 0.45, 0)
+	HopFrame.Size = UDim2.new(1, 0, 1.1, 0)
 
 	YuukiHub.Name = "Yuuki Hub"
 	YuukiHub.Parent = HopFrame
