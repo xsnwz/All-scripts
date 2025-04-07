@@ -57,10 +57,6 @@ global_env.Theme = {
 	}
 }
 
-if global_env.xsnwzlib then
-	return
-end
-
 local library = {} library.__index = library
 local utils = {} utils.__index = utils
 library.theme = global_env.Theme.Brow
