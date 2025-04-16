@@ -1702,6 +1702,67 @@ library.new = function(info)
 
 				return LabelTable
 			end
+			library.FuncMain.TextBox = function(info)
+
+				local TextBox = utils.create("Frame", {
+					Name = "@TextBox",
+					Parent = pageframe,
+					BackgroundColor3 = Color3.fromRGB(8925, 8925, 8925),
+					BackgroundTransparency = 1.000,
+					BorderSizePixel = 0,
+					Position = UDim2.new(0, 0, 0.147983715, 0),
+					Size = UDim2.new(0, 232, 0, 25),
+				})
+
+				local textboxbar = utils.create("Frame", {
+					Name = "@textboxbar",
+					Parent = TextBox,
+					AnchorPoint = Vector2.new(0.5, 0.5),
+					BackgroundColor3 = Color3.fromRGB(35, 35, 35),
+					BorderSizePixel = 0,
+					ClipsDescendants = true,
+					Position = UDim2.new(0.5, 0, 0.439999998, 0),
+					Size = UDim2.new(0.949999988, 0, 0.0350000001, 19),
+				})
+
+				utils.create("UICorner", {
+					CornerRadius = UDim.new(0, 7),
+					Parent = textboxbar,
+				})
+
+				utils.create("UIStroke", {
+					Color = Color3.fromRGB(50, 50, 50),
+					Transparency = 0.20000000298023224,
+					Parent = textboxbar,
+				})
+
+				local textvox = utils.create("TextBox", {
+					Name = "TextLabel",
+					Parent = textboxbar,
+					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+					BackgroundTransparency = 1.000,
+					BorderColor3 = Color3.fromRGB(0, 0, 0),
+					BorderSizePixel = 0,
+					Size = UDim2.new(1, 0, 1, 0),
+					FontFace = Font.new("rbxassetid://12187374537", Enum.FontWeight.Regular, Enum.FontStyle.Normal),
+					PlaceholderText = info.Title or "null",
+					Text = "",
+					TextColor3 = Color3.fromRGB(247, 247, 247),
+					TextSize = 14.000,
+					TextTransparency = 0.600,
+				})
+				
+				textvox.FocusLost:Connect(function()
+					local Success, Response = pcall(function()
+						info.Callback(textvox.Text)
+					end)
+
+					if not Success then
+						warn((info.Title or "null").." Callback Error " ..tostring(Response))
+					end
+				end)
+			end
+			
 			library.FuncMain.Button = function(info)
 
 				local Button = utils.create("Frame", {
