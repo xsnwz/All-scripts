@@ -947,6 +947,62 @@ library.new = function(info)
 						end
 					end
 				end)
+				
+				function ToggleTable:UnLock()
+					Lock = false
+					utils.tween(lockframe, { .2, Enum.EasingStyle.Back, Enum.EasingDirection.Out }, {
+						BackgroundTransparency = 1,
+					})
+					utils.tween(lockimage_, { .2, Enum.EasingStyle.Back, Enum.EasingDirection.Out }, {
+						Size = UDim2.new(0, 0, 0, 0),
+					})
+				end
+				function ToggleTable:Lock()
+					Lock = true
+					utils.tween(lockframe, { .2, Enum.EasingStyle.Back, Enum.EasingDirection.Out }, {
+						BackgroundTransparency = 0.7,
+					})
+					utils.tween(lockimage_, { .2, Enum.EasingStyle.Back, Enum.EasingDirection.Out }, {
+						Size = UDim2.new(0, 19, 0, 19),
+					})
+				end
+				
+				function ToggleTable.SetValue(setval)
+					if setval then
+						default = true
+
+						utils.tween(Frame_2, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+							Size = UDim2FromTable({0, 20},{0, 20}),
+							Transparency = 0,
+						})
+
+						utils.tween(ticks, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+							Size = UDim2FromTable({0, 20},{0, 20}),
+							Position = UDim2FromTable({0, 0},{0, 0}),
+						})
+					else
+						default = false
+
+						utils.tween(Frame_2, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+							Size = UDim2FromTable({0, 0},{0, 0}),
+							Transparency = 1,
+						})
+
+						utils.tween(ticks, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+							Size = UDim2FromTable({0, 0},{0, 0}),
+							Position = UDim2FromTable({0.5, 0},{0.5, 0}),
+						})
+					end
+					local Success, Response = pcall(function()
+						info.Callback(default)
+					end)
+
+					if not Success then
+						warn((info.Title or "null").." Callback Error " ..tostring(Response))
+					end
+				end
+
+				return ToggleTable
 			end
 			library.FuncMain.Dropdown = function(info)
 				local default = info.Default or ((info.Multi) and {} or "")
@@ -1746,11 +1802,21 @@ library.new = function(info)
 					Size = UDim2.new(1, 0, 1, 0),
 					FontFace = Font.new("rbxassetid://12187374537", Enum.FontWeight.Regular, Enum.FontStyle.Normal),
 					PlaceholderText = info.Title or "null",
-					Text = "",
+					Text = (info.Default) and tostring(info.Default) or "",
 					TextColor3 = Color3.fromRGB(247, 247, 247),
 					TextSize = 14.000,
 					TextTransparency = 0.600,
 				})
+				
+				if info.Default then
+					local Success, Response = pcall(function()
+						info.Callback(tostring(info.Default))
+					end)
+
+					if not Success then
+						warn((info.Title or "null").." Callback Error " ..tostring(Response))
+					end
+				end
 				
 				textvox.FocusLost:Connect(function()
 					local Success, Response = pcall(function()
