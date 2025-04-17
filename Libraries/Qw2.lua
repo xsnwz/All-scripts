@@ -349,6 +349,7 @@ function checkDevice()
 	end
 end
 
+checkDevice()
 
 library.new = function(info)
 
