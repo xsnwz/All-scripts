@@ -320,7 +320,7 @@ local function CreateToggle()
 		BorderSizePixel = 0,
 		Size = UDim2.new(1, 0, 1, 0),
 		Image = "rbxassetid://106004313642464",
-		ImageColor3 = library.theme.MainColor,
+		ImageColor3 = Color3.fromRGB(14, 5, 63),
 		ImageRectOffset = Vector2.new(50, -300),
 		ImageRectSize = Vector2.new(500, 500),
 		ImageTransparency = 0.850,
