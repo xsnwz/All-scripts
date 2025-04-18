@@ -1574,46 +1574,74 @@ library.new = function(info)
 									end
 								end
 							else
-								for i, v in next, scrolling_dropdown:GetChildren() do
-									if v:IsA("TextButton") and v:FindFirstChild("title") and v:FindFirstChild("Frame") and v.Frame:FindFirstChild("Frame") and v.Frame.Frame:FindFirstChild("ImageLabel") then 
-										utils.tween(v.title, { 0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out }, {
-											TextTransparency = 0.5,
-										})
-										
-										utils.tween(v.Frame.Frame, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
-											Size = UDim2FromTable({0, 0},{0, 0}),
-											Transparency = 0,
-										})
+								if default ~= Text then
+									for i, v in next, scrolling_dropdown:GetChildren() do
+										if v:IsA("TextButton") and v:FindFirstChild("title") and v:FindFirstChild("Frame") and v.Frame:FindFirstChild("Frame") and v.Frame.Frame:FindFirstChild("ImageLabel") then 
+											utils.tween(v.title, { 0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out }, {
+												TextTransparency = 0.5,
+											})
 
-										utils.tween(v.Frame.Frame.ImageLabel, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
-											Size = UDim2FromTable({0, 0},{0, 0}),
-											Position = UDim2FromTable({0.5, 0},{0.5, 0}),
-										})
+											utils.tween(v.Frame.Frame, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+												Size = UDim2FromTable({0, 0},{0, 0}),
+												Transparency = 0,
+											})
+
+											utils.tween(v.Frame.Frame.ImageLabel, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+												Size = UDim2FromTable({0, 0},{0, 0}),
+												Position = UDim2FromTable({0.5, 0},{0.5, 0}),
+											})
+										end
 									end
-								end
 
-								utils.tween(da_title, { 0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out }, {
-									TextTransparency = 0,
-								})
-								
-								utils.tween(Frame_2, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
-									Size = UDim2FromTable({0, 15},{0, 15}),
-									Transparency = 0,
-								})
+									utils.tween(da_title, { 0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out }, {
+										TextTransparency = 0,
+									})
 
-								utils.tween(ticks, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
-									Size = UDim2FromTable({0, 15},{0, 15}),
-									Position = UDim2FromTable({0, 0},{0, 0}),
-								})
+									utils.tween(Frame_2, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+										Size = UDim2FromTable({0, 15},{0, 15}),
+										Transparency = 0,
+									})
 
-								fking_title.Text = (info.Title or "null").." / "..Text
-								default = Text
-								local Success, Response = pcall(function()
-									info.Callback(Text)
-								end)
+									utils.tween(ticks, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+										Size = UDim2FromTable({0, 15},{0, 15}),
+										Position = UDim2FromTable({0, 0},{0, 0}),
+									})
 
-								if not Success then
-									warn((info.Title or "null").." Callback Error " ..tostring(Response))
+									fking_title.Text = (info.Title or "null").." / "..Text
+									default = Text
+									local Success, Response = pcall(function()
+										info.Callback(Text)
+									end)
+
+									if not Success then
+										warn((info.Title or "null").." Callback Error " ..tostring(Response))
+									end
+								else
+									utils.tween(da_title, { 0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out }, {
+										TextTransparency = 0.5,
+									})
+
+									utils.tween(Frame_2, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+										Size = UDim2FromTable({0, 0},{0, 0}),
+										Transparency = 0,
+									})
+
+									utils.tween(ticks, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+										Size = UDim2FromTable({0, 0},{0, 0}),
+										Position = UDim2FromTable({0.5, 0},{0.5, 0}),
+									})
+									
+									fking_title.Text = (info.Title or "null")
+									
+									default = nil
+									
+									local Success, Response = pcall(function()
+										info.Callback(default)
+									end)
+
+									if not Success then
+										warn((info.Title or "null").." Callback Error " ..tostring(Response))
+									end
 								end
 							end
 						end)
