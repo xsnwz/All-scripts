@@ -1092,6 +1092,7 @@ library.new = function(info)
 			library.FuncMain.Dropdown = function(info)
 				local default = info.Default or ((info.Multi) and {} or "")
 				local list = info.List
+				local Canoff = info.Canoff or false
 				if info.Multi and typeof(default) ~= "table" then
 					warn("Default Must be Table")
 					return
@@ -1617,30 +1618,32 @@ library.new = function(info)
 										warn((info.Title or "null").." Callback Error " ..tostring(Response))
 									end
 								else
-									utils.tween(da_title, { 0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out }, {
-										TextTransparency = 0.5,
-									})
+									if Canoff then
+										utils.tween(da_title, { 0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out }, {
+											TextTransparency = 0.5,
+										})
 
-									utils.tween(Frame_2, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
-										Size = UDim2FromTable({0, 0},{0, 0}),
-										Transparency = 0,
-									})
+										utils.tween(Frame_2, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+											Size = UDim2FromTable({0, 0},{0, 0}),
+											Transparency = 0,
+										})
 
-									utils.tween(ticks, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
-										Size = UDim2FromTable({0, 0},{0, 0}),
-										Position = UDim2FromTable({0.5, 0},{0.5, 0}),
-									})
-									
-									fking_title.Text = (info.Title or "null")
-									
-									default = nil
-									
-									local Success, Response = pcall(function()
-										info.Callback(default)
-									end)
+										utils.tween(ticks, { .2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out }, {
+											Size = UDim2FromTable({0, 0},{0, 0}),
+											Position = UDim2FromTable({0.5, 0},{0.5, 0}),
+										})
+										
+										fking_title.Text = (info.Title or "null")
+										
+										default = nil
+										
+										local Success, Response = pcall(function()
+											info.Callback(default)
+										end)
 
-									if not Success then
-										warn((info.Title or "null").." Callback Error " ..tostring(Response))
+										if not Success then
+											warn((info.Title or "null").." Callback Error " ..tostring(Response))
+										end
 									end
 								end
 							end
