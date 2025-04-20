@@ -44,7 +44,7 @@ local ProtectGui = protectgui or (syn and syn.protect_gui) or function() end
 
 local Themes = {
 	Names = {
-        "Qwerty,"
+        	"Qwerty",
 		"Dark",
 		"Darker", 
 		"AMOLED",
