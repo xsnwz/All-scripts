@@ -46,88 +46,6 @@ utils.tween = function(obj, info, properties, callback)
 	return anim
 end
 
-local function CreateToggle()
-
-	local xenoscriptsbtn = utils.create("ScreenGui", {
-		Name = "scripts.btn",
-		Parent = (RunService:IsStudio()) and PlayerGui or game:GetService("CoreGui"),
-		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
-		DisplayOrder = 999,
-		ResetOnSpawn = false,
-	})
-
-	local Frame = utils.create("Frame", {
-		Parent = xenoscriptsbtn,
-		AnchorPoint = Vector2.new(0, 1),
-		BackgroundTransparency = 1.000,
-		BorderSizePixel = 0,
-		Position = UDim2.new(0, 15, 1, -15),
-		Size = UDim2.new(0, 0, 0, 0),
-	})
-	utils.tween(Frame, {0.4, Enum.EasingStyle.Back}, {
-		Size = UDim2FromTable({0, 50},{0, 50})
-	})
-
-	local TextButtonv = utils.create("TextButton", {
-		Parent = Frame,
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundTransparency = 1.000,
-		BorderSizePixel = 0,
-		Position = UDim2.new(0.5, 0, 0.5, 0),
-		Size = UDim2.new(1, 0, 1, 0),
-		TextTransparency = 1.000,
-	})
-
-	local ImageLabel = utils.create("ImageLabel", {
-		Parent = Frame,
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundTransparency = 1.000,
-		BorderSizePixel = 0,
-		Position = UDim2.new(0.5, 0, 0.5, 0),
-		Size = UDim2.new(1, 0, 1, 0),
-		Image = "rbxassetid://108345599379709",
-		ScaleType = Enum.ScaleType.Crop,
-	})
-
-	local s1 = utils.create("ImageLabel", {
-		Name = "s1",
-		Parent = ImageLabel,
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 1.000,
-		BorderColor3 = Color3.fromRGB(0, 0, 0),
-		BorderSizePixel = 0,
-		Size = UDim2.new(1, 0, 1, 0),
-		Image = "rbxassetid://106004313642464",
-		ImageColor3 = Color3.fromRGB(14, 5, 63),
-		ImageRectOffset = Vector2.new(50, -300),
-		ImageRectSize = Vector2.new(500, 500),
-		ImageTransparency = 0.850,
-	})
-
-	utils.create("UICorner", {
-		CornerRadius = UDim.new(0, 300),
-		Parent = s1,
-	})
-
-	utils.dragify(Frame, TextButtonv, 0)
-
-	return TextButtonv,ImageLabel
-end
-
-local global_env = (getgenv and getgenv()) or _G
-
-function checkDevice()
-	if LocalPlayer then
-		local FeariseToggle,vvvvvv = CreateToggle()
-		FeariseToggle.MouseButton1Click:Connect(function()
-			if global_env.xsnwzlib then
-				global_env.xsnwzlib.Enabled = not global_env.xsnwzlib.Enabled
-			end
-		end)
-	end
-end
-
-checkDevice()
 
 local function UpSize(Scroll)
 	local OffsetY = 0
@@ -236,6 +154,89 @@ function UDim2FromTable(...)
 
 	return UDim2.new(xScale, xOffset, yScale, yOffset)
 end
+
+local function CreateToggle()
+
+	local xenoscriptsbtn = utils.create("ScreenGui", {
+		Name = "scripts.btn",
+		Parent = (RunService:IsStudio()) and PlayerGui or game:GetService("CoreGui"),
+		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
+		DisplayOrder = 999,
+		ResetOnSpawn = false,
+	})
+
+	local Frame = utils.create("Frame", {
+		Parent = xenoscriptsbtn,
+		AnchorPoint = Vector2.new(0, 1),
+		BackgroundTransparency = 1.000,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 15, 1, -15),
+		Size = UDim2.new(0, 0, 0, 0),
+	})
+	utils.tween(Frame, {0.4, Enum.EasingStyle.Back}, {
+		Size = UDim2FromTable({0, 50},{0, 50})
+	})
+
+	local TextButtonv = utils.create("TextButton", {
+		Parent = Frame,
+		AnchorPoint = Vector2.new(0.5, 0.5),
+		BackgroundTransparency = 1.000,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0.5, 0, 0.5, 0),
+		Size = UDim2.new(1, 0, 1, 0),
+		TextTransparency = 1.000,
+	})
+
+	local ImageLabel = utils.create("ImageLabel", {
+		Parent = Frame,
+		AnchorPoint = Vector2.new(0.5, 0.5),
+		BackgroundTransparency = 1.000,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0.5, 0, 0.5, 0),
+		Size = UDim2.new(1, 0, 1, 0),
+		Image = "rbxassetid://108345599379709",
+		ScaleType = Enum.ScaleType.Crop,
+	})
+
+	local s1 = utils.create("ImageLabel", {
+		Name = "s1",
+		Parent = ImageLabel,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		Image = "rbxassetid://106004313642464",
+		ImageColor3 = Color3.fromRGB(14, 5, 63),
+		ImageRectOffset = Vector2.new(50, -300),
+		ImageRectSize = Vector2.new(500, 500),
+		ImageTransparency = 0.850,
+	})
+
+	utils.create("UICorner", {
+		CornerRadius = UDim.new(0, 300),
+		Parent = s1,
+	})
+
+	utils.dragify(Frame, TextButtonv, 0)
+
+	return TextButtonv,ImageLabel
+end
+
+local global_env = (getgenv and getgenv()) or _G
+
+function checkDevice()
+	if LocalPlayer then
+		local FeariseToggle,vvvvvv = CreateToggle()
+		FeariseToggle.MouseButton1Click:Connect(function()
+			if global_env.xsnwzlib then
+				global_env.xsnwzlib.Enabled = not global_env.xsnwzlib.Enabled
+			end
+		end)
+	end
+end
+
+checkDevice()
 
 library.new = function(libraryinfo)
 	local SitinkGui = utils.create("ScreenGui", {
