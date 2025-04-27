@@ -1268,7 +1268,6 @@ library.new = function(libraryinfo)
 					BackgroundColor3 = Color3.fromRGB(42, 42, 42),
 					BorderColor3 = Color3.fromRGB(0, 0, 0),
 					BorderSizePixel = 0,
-					LayoutOrder = 2,
 					Size = UDim2.new(1, -8, 0, 44),
 				})
 
@@ -1381,7 +1380,6 @@ library.new = function(libraryinfo)
 					BackgroundColor3 = Color3.fromRGB(42, 42, 42),
 					BorderColor3 = Color3.fromRGB(0, 0, 0),
 					BorderSizePixel = 0,
-					LayoutOrder = 4,
 					Size = UDim2.new(1, -8, 0, 44),
 				})
 
@@ -1512,7 +1510,6 @@ library.new = function(libraryinfo)
 					BackgroundColor3 = Color3.fromRGB(42, 42, 42),
 					BorderColor3 = Color3.fromRGB(0, 0, 0),
 					BorderSizePixel = 0,
-					LayoutOrder = 10,
 					Size = UDim2.new(1, -8, 0, 44),
 				})
 
@@ -1711,7 +1708,6 @@ library.new = function(libraryinfo)
 					BorderColor3 = Color3.fromRGB(0, 0, 0),
 					BorderSizePixel = 0,
 					ClipsDescendants = true,
-					LayoutOrder = 12,
 					Size = UDim2.new(1, -8, 0, 44),
 				})
 				
@@ -1970,7 +1966,6 @@ library.new = function(libraryinfo)
 						BackgroundColor3 = Color3.fromRGB(53, 53, 53),
 						BorderColor3 = Color3.fromRGB(0, 0, 0),
 						BorderSizePixel = 0,
-						LayoutOrder = 1,
 						Size = UDim2.new(1, 0, 0, 20),
 					})
 
@@ -2116,7 +2111,6 @@ library.new = function(libraryinfo)
 					BackgroundColor3 = Color3.fromRGB(42, 42, 42),
 					BorderColor3 = Color3.fromRGB(0, 0, 0),
 					BorderSizePixel = 0,
-					LayoutOrder = 6,
 					Size = UDim2.new(1, -8, 0, 44),
 				})
 
