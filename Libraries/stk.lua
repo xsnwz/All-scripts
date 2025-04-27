@@ -1653,7 +1653,7 @@ library.new = function(libraryinfo)
 					)
 
 					local Success, Response = pcall(function()
-						callback()
+						callback(Value)
 					end)
 
 					if not Success then
