@@ -1,4 +1,4 @@
--- youngtobieedasick : obito
+-- youngtobieedasick : obito v1
 do 
 	-- Module GetService
 	RunService = game:GetService("RunService")
@@ -775,6 +775,8 @@ library.new = function(libraryinfo)
 	}
 	local PageOrders = 0
 	function library.tab.tab(info)
+		TopDescription.Position = UDim2.new(0, 16 + TopTitle.TextBounds.X, 0, 10)
+		
 		local ScrollLayer = utils.create("ScrollingFrame", {
 			Name = "ScrollLayer",
 			Parent = LayersFolder,
@@ -935,6 +937,7 @@ library.new = function(libraryinfo)
 
 		local SelectionOrders = 0 
 		library.sections.section = function(info)
+			TopDescription.Position = UDim2.new(0, 16 + TopTitle.TextBounds.X, 0, 10)
 			local selection_ScrollLayer = utils.create("ScrollingFrame", {
 				Name = "ScrollLayer",
 				Parent = LayersFolder,
