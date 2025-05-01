@@ -244,10 +244,10 @@ library.new = function(libraryinfo)
 		Parent = (gethui) and gethui() or ((RunService:IsStudio()) and PlayerGui or game:GetService("CoreGui")),
 		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
 	})
-	
+
 	global_env.xsnwzlib = SitinkGui
-	
-	
+
+
 	local Main = utils.create("Frame", {
 		Name = "Main",
 		Parent = SitinkGui,
@@ -305,14 +305,6 @@ library.new = function(libraryinfo)
 		TextSize = 14.000,
 		TextXAlignment = Enum.TextXAlignment.Left,
 	})
-
-	TopTitle:GetPropertyChangedSignal("TextBounds"):Connect(function()
-		TopDescription.Position = UDim2.new(0, 16 + TopTitle.TextBounds.X, 0, 10)
-	end)
-
-	TopTitle:GetPropertyChangedSignal("Text"):Connect(function()
-		TopDescription.Position = UDim2.new(0, 16 + TopTitle.TextBounds.X, 0, 10)
-	end)
 
 	local CloseButton = utils.create("TextButton", {
 		Name = "CloseButton",
@@ -712,6 +704,11 @@ library.new = function(libraryinfo)
 		ImageColor3 = Color3.fromRGB(230, 230, 230),
 		ImageTransparency = 0.999,
 	})
+	
+	TopDescription.Position = UDim2.new(0, 16 + TopTitle.TextBounds.X, 0, 10)
+	TopTitle:GetPropertyChangedSignal("TextBounds"):Connect(function()
+		TopDescription.Position = UDim2.new(0, 16 + TopTitle.TextBounds.X, 0, 10)
+	end)
 
 	local in_tween = false
 	InfoButton.Activated:Connect(function()
@@ -720,7 +717,7 @@ library.new = function(libraryinfo)
 		end
 		in_tween = true
 		AnotherFrame.Visible = true
-		
+
 		utils.tween(LogFrame, {0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut}, {
 			Size = UDim2.new(0, 250, 0, 125)
 		}, function()
@@ -738,7 +735,7 @@ library.new = function(libraryinfo)
 		end
 		in_tween = true
 		AnotherFrame.Visible = true
-		
+
 		utils.tween(LogFrame, {0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut}, {
 			Size = UDim2.new(0, 0, 0, 0)
 		}, function()
@@ -751,19 +748,19 @@ library.new = function(libraryinfo)
 		BackButton.LayoutOrder = TabOrder
 		BackButton.Text = TabName
 		UIPageLayout:JumpToIndex(TabOrder)
-		
+
 		utils.tween(BackButton, {0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut}, {
 			TextTransparency = 0
 		})
-		
+
 		utils.tween(BackButton_2, {0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut}, {
 			TextTransparency = 0.999
 		})
-		
+
 		utils.tween(ForwardImage, {0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut}, {
 			ImageTransparency = 0.999
 		})
-		
+
 		BackButton.Size = UDim2.new(0, BackButton.TextBounds.X + 3, 1, 0)
 		NameBack.Size = UDim2.new(0, BackButton.Size.X.Offset, 1, 0)
 		BackButton_2.Position = UDim2.new(0, NameBack.Size.X.Offset, 0, 0)
@@ -1710,7 +1707,7 @@ library.new = function(libraryinfo)
 					ClipsDescendants = true,
 					Size = UDim2.new(1, -8, 0, 44),
 				})
-				
+
 				Dropdown:GetPropertyChangedSignal("Size"):Connect(function()
 					UpSize(selection_ScrollLayer)
 				end)
@@ -1863,7 +1860,7 @@ library.new = function(libraryinfo)
 						end
 					end
 				end
-				
+
 				function DropF.Set(...)
 					local Value, Optionx = ...
 					default = Value or default
@@ -2029,7 +2026,7 @@ library.new = function(libraryinfo)
 						TextColor3 = Color3.fromRGB(0, 0, 0),
 						TextSize = 14.000,
 					})
-					
+
 					OptionButton.Activated:Connect(function()
 						if info.Multi then
 							if not table.find(default, OptionText.Text) then
@@ -2049,7 +2046,7 @@ library.new = function(libraryinfo)
 						end
 					end)
 				end
-				
+
 				local StartInput = false
 				DropdownButton.Activated:Connect(function()
 					if Dropdown.Size.Y.Offset > 44 then
@@ -2095,11 +2092,11 @@ library.new = function(libraryinfo)
 						end
 					end
 				end)
-				
+
 				for _, v in next,list do
 					DropF.Add(v)
 				end
-				
+
 				DropF.Set(default)
 			end
 
