@@ -1,3 +1,4 @@
+if not getgenv().network then
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Remotes = ReplicatedStorage:WaitForChild("Remotes")
 
@@ -35,4 +36,5 @@ function Network:Retrieve(RemoteName, Callback)
 	end
 end
 
-return Network
+getgenv().network = Network
+end
