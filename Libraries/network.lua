@@ -1,41 +1,38 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Remotes = ReplicatedStorage:WaitForChild("Remotes")
+
 local Network = {}
-local Callbacks = {}
 
-local oldNamecall
-oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
-    local args = {...}
-    local method = getnamecallmethod()
+function Network:Send(RemoteName, ...)
+	local Remote = Remotes:FindFirstChild(RemoteName)
+	if not Remote then
+		warn("[Network] Remote not found:", RemoteName)
+		return
+	end
 
-    if (self:IsA("RemoteEvent") and (method == "FireClient" or method == "FireAllClients")) then
-        local eventName = self.Name
+	if Remote:IsA("RemoteFunction") then
+		return Remote:InvokeServer(...)
+	elseif Remote:IsA("RemoteEvent") then
+		Remote:FireServer(...)
+	else
+		warn("[Network] Invalid remote type:", Remote.ClassName)
+	end
+end
 
-        if Callbacks[eventName] then
-            for _, callback in ipairs(Callbacks[eventName]) do
-                task.spawn(function()
-                    callback(unpack(args))
-                end)
-            end
-        end
-    end
-    
-    return oldNamecall(self, ...)
-end))
+function Network:Retrieve(RemoteName, Callback)
+	local Remote = Remotes:FindFirstChild(RemoteName)
+	if not Remote then
+		warn("[Network] Remote not found:", RemoteName)
+		return
+	end
 
-function Network:Retrieve(eventName, callback)
-    if not Callbacks[eventName] then
-        Callbacks[eventName] = {}
-    end
-    
-    table.insert(Callbacks[eventName], callback)
-    
-    return function()
-        for i, cb in ipairs(Callbacks[eventName]) do
-            if cb == callback then
-                table.remove(Callbacks[eventName], i)
-                break
-            end
-        end
-    end
+	if Remote:IsA("RemoteEvent") then
+		Remote.OnClientEvent:Connect(Callback)
+	elseif Remote:IsA("RemoteFunction") then
+		Remote.OnClientInvoke = Callback
+	else
+		warn("[Network] Remote type không hỗ trợ:", Remote.ClassName)
+	end
 end
 
 return Network
