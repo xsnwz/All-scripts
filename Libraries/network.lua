@@ -32,7 +32,7 @@ function Network:Retrieve(RemoteName, Callback)
 	elseif Remote:IsA("RemoteFunction") then
 		Remote.OnClientInvoke = Callback
 	else
-		warn("[Network] Remote type không hỗ trợ:", Remote.ClassName)
+		warn("[Network] Remote type not support:", Remote.ClassName)
 	end
 end
 
